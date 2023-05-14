@@ -790,7 +790,7 @@
         <!-- show all الكل عؤض -->
                 <div class="section-header d-flex mb-4">
                     <h2 class="section--title">
-                        <span>&#x623;&#x64A;&#x641;&#x648;&#x646; 14 &#x628;&#x631;&#x648; &#x645;&#x627;&#x643;&#x633; </span>
+                        <span>&#x623;&#x64A;&#x641;&#x648;&#x646; 14 &#x628;&#x631;&#x648; &#x645;&#x627;&#x643;&#x633;</span>
                     </h2>
                     <div class="section-actions">
                         <a class="circle-action button-next" href="#">
@@ -924,7 +924,9 @@
                         <a class="circle-action button-prev" href="#">
                             <span class="sicon-arrow-left"></span>
                         </a>
-                        <a href="store/Product/158.php?id=<?php echo $r['prod_id']?>" rel="canonical">
+                        <a class="button-more" href="store/category/57.php">عرض الكل</a>
+
+                        
                     </div>
                 </div>
         <div class="products-listing product-listing-top">

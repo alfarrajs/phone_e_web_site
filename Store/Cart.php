@@ -799,7 +799,7 @@
                 <p class="empty-text">السلة فارغة</p>
             </div>
             <div class="cart-nav">
-                <a href="../Home.html" class="mobile-webview-hide cart-nav-submit receipt-back">
+                <a href="../index.php" class="mobile-webview-hide cart-nav-submit receipt-back">
                     <i class="icon-chevron-right"></i> العودة للمتجر
                 </a>
             </div>
@@ -862,7 +862,25 @@
         <div id='get-number'></div><a class='close-chat' href='javascript:void'>×</a>
     </div>
     <a class='blantershow-chat' href='javascript:void' title='Show Chat'><svg width="20" viewbox="0 0 24 24"><defs></defs><path fill="#eceff1" d="M20.5 3.4A12.1 12.1 0 0012 0 12 12 0 001.7 17.8L0 24l6.3-1.7c2.8 1.5 5 1.4 5.8 1.5a12 12 0 008.4-20.3z"></path><path fill="#4caf50" d="M12 21.8c-3.1 0-5.2-1.6-5.4-1.6l-3.7 1 1-3.7-.3-.4A9.9 9.9 0 012.1 12a10 10 0 0117-7 9.9 9.9 0 01-7 16.9z"></path><path fill="#fafafa" d="M17.5 14.3c-.3 0-1.8-.8-2-.9-.7-.2-.5 0-1.7 1.3-.1.2-.3.2-.6.1s-1.3-.5-2.4-1.5a9 9 0 01-1.7-2c-.3-.6.4-.6 1-1.7l-.1-.5-1-2.2c-.2-.6-.4-.5-.6-.5-.6 0-1 0-1.4.3-1.6 1.8-1.2 3.6.2 5.6 2.7 3.5 4.2 4.2 6.8 5 .7.3 1.4.3 1.9.2.6 0 1.7-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"></path></svg> محادثة واتس اب</a>
+<!-- start php script -->
 
+<?php
+include '../admin/config.php';
+$facebook = mysqli_query($conn,"select * from sitesetting where id=3");
+$twitter = mysqli_query($conn,"select * from sitesetting where id=2");
+$whatsup = mysqli_query($conn,"select * from sitesetting where id=1");
+$email = mysqli_query($conn,"select * from sitesetting where id=44");
+// 
+$face = mysqli_fetch_assoc($facebook);
+$twit = mysqli_fetch_assoc($twitter);
+$whats = mysqli_fetch_assoc($whatsup);
+$em = mysqli_fetch_assoc($email);
+
+?>
+
+<!-- end of php script -->
+  
+    <!-- foooter of the website -->
     <footer>
         <div class="footer-main">
             <div class="container">
@@ -873,24 +891,24 @@
                         </h2>
                         <p>نهتم ونحرص دائم على رضاء العميل ونطمح للوصول الى أكبر شريحة من العملاء</p>
                         <div class="store-contact">
-                            <a href="https://wa.me/966558069974" rel="nofollow" style="direction:ltr" target="_blank">
+                            <a href="<?php echo $whats['link']?>" rel="nofollow" style="direction:ltr" target="_blank">
                                 <i class="sicon-whatsapp2"></i>
                                 واتساب
                             </a>&nbsp;
                             <a href="mailto:protecksa12@gmail.com">
                                 <i class="sicon-mail"></i>
-                                ايميل
+                                ايميل:<?php echo $em['link']?>
                             </a>&nbsp;
                         </div>
                         <div class="store-certificate">
                             <a href="#">
-                                <img src="../theme/assets.salla.cloud/themes/default/assets/images/maroof2d19.png?v=v1.4.875" alt=" ">
+                                <img src="theme/assets.salla.cloud/themes/default/assets/images/maroof2d19.png?v=v1.4.875" alt=" ">
                             </a>
                             <a href="#" class="tax-certificate pdf" style="display: none">
-                                <img src="../theme/assets.salla.cloud/themes/default/assets/images/tax2d19.png?v=v1.4.875" alt=" ">
+                                <img src="theme/assets.salla.cloud/themes/default/assets/images/tax2d19.png?v=v1.4.875" alt=" ">
                             </a>
                             <a href="#" class="tax-certificate image ">
-                                <img src="../theme/assets.salla.cloud/themes/default/assets/images/tax2d19.png?v=v1.4.875" alt=" ">
+                                <img src="theme/assets.salla.cloud/themes/default/assets/images/tax2d19.png?v=v1.4.875" alt=" ">
                             </a>
                             <span class="font-13">
                                 الرقم الضريبي:
@@ -909,7 +927,7 @@
                                         </p>
                                     </div>
                                     <div class="modal-body text-center">
-                                        <img class="w-100" src="../theme/cdn.salla.sa/WlXGP/OZHA1EfusZu1WYxzYRvC222JhCKi083mmOg1FHIE.jpg" alt="302277430400003">
+                                        <img class="w-100" src="theme/cdn.salla.sa/WlXGP/OZHA1EfusZu1WYxzYRvC222JhCKi083mmOg1FHIE.jpg" alt="302277430400003">
                                     </div>
                                 </div>
                             </div>
@@ -920,9 +938,9 @@
                     <div class="col-md-4 mb-3 mb-md-0">
                         <h2 class="footer-title"><span>روابط مهمة</span></h2>
                         <ul class="footer-links">
-                            <li><a href="../Home/TermsConditions.html"> سياسة الضمان والاستبدال </a></li>
-                            <li><a href="../Home/WorkTimes.html"> اوقات العمل </a></li>
-                            <li><a href="../Home/RefundAndCancleOrders.html"> استرجاع الطلبات / الغاء الطلب / استرجاع المبالغ </a></li>
+                            <li><a href="Home/TermsConditions.php"> سياسة الضمان والاستبدال </a></li>
+                            <li><a href="Home/WorkTimes.php"> اوقات العمل </a></li>
+                            <li><a href="Home/RefundAndCancleOrders.php"> استرجاع الطلبات / الغاء الطلب / استرجاع المبالغ </a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -931,12 +949,12 @@
                         </h2>
                         <ul class="social clearfix">
                             <li class="social__item">
-                                <a href="https://instagram.com" target="_blank">
-                                    <span class="sicon-instagram"></span>
+                                <a href="<?php echo $face['link']?>" target="_blank">
+                                    <span class="sicon-facebook"></span>
                                 </a>
                             </li>
                             <li class="social__item">
-                                <a href="https://twitter.com/" target="_blank">
+                                <a href="<?php echo $twit['link']?>" target="_blank">
                                     <span class="sicon-twitter"></span>
                                 </a>
                             </li>
@@ -949,9 +967,7 @@
             <div class="container">
                 <div class="fs-cont">
                     <div class="fs-rights">
-                        <p class="mb-4 mb-md-0">
-                            الحقوق محفوظة &#x628;&#x631;&#x648; &#x62A;&#x64A;&#x643; : Pro tech © 2022
-                        </p>
+               
                     </div>
                     <div class="fs-payment">
                         <div class="icons">
@@ -989,8 +1005,6 @@
                             </div> <div>
                                 <img src="../theme/assets.salla.cloud/themes/default/assets/images/mada2d19.png?v=v1.4.875" alt=" ">
                                 <img src="../theme/assets.salla.cloud/themes/default/assets/images/cc2d19.png?v=v1.4.875" alt=" ">
-                                <img src="../theme/assets.salla.cloud/themes/default/assets/images/bank2d19.png?v=v1.4.875" alt=" ">
-                                <img src="../theme/assets.salla.cloud/themes/default/assets/images/cod2d19.png?v=v1.4.875" alt=" ">
                             </div>
                         </div>
                     </div>
