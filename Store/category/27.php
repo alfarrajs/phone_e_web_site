@@ -368,83 +368,11 @@
         To get full functionality of this site you need to enable JavaScript. Here is how
         <a href="https://www.enable-javascript.com/" rel="nofollow noopener noreferrer" target="_blank">To enable JavaScript on webpage</a>.
     </noscript>
-    <header class="site-header">
-        <div class="sub-header p-10 d-none d-lg-block">
-            <div class="container">
-                <div class="row header-wrapper">
-                    <div class="col-lg-6">
-                    </div>
-                    <div class="col-lg-6 text-left">
-                        <div id="cl_switcher_wrapper">
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container py-3 header-top">
-            <div class="row header-wrapper">
-                <div class="col-md-3 logo-wrapper d-flex d-lg-block">
-                    <a href="#" class="sub-nav__menu ml-2">
-                        <svg width="30px" height="30px" version="1.1" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m23 29c-1.6562 0-3 1.3438-3 3s1.3438 3 3 3h54c1.6562 0 3-1.3438 3-3s-1.3438-3-3-3zm0 18c-1.6562 0-3 1.3438-3 3s1.3438 3 3 3h54c1.6562 0 3-1.3438 3-3s-1.3438-3-3-3zm0 18c-1.6562 0-3 1.3438-3 3s1.3438 3 3 3h54c1.6562 0 3-1.3438 3-3s-1.3438-3-3-3z"></path>
-                        </svg>
-                    </a>
-                    <h1 class="logo">
-                    <a href="../../index.php">
-                            <img src="../../Images/Original/11a4d886-5bd0-469a-bda2-f95d9cbec64a.jpg" alt="&#x628;&#x631;&#x648; &#x62A;&#x64A;&#x643; : Pro tech">
-                        </a>
-                    </h1>
-                </div>
-                <div class="col-sm-12 col-md-6 d-lg-flex search-container">
-                    <div class="search-wrapper">
-                        <div id="search">
-                            <form id="search_form" action="https://protichksa.com//search">
-                                <div class="ui category search">
-                                    <div class="ui icon input">
-                                        <input id="searchbox" name="q" class="prompt form-control" type="text" placeholder="أدخل كلمة البحث">
-                                        <i class="search icon"></i>
-                                    </div>
-                                    <div class="results"></div>
-                                </div>
-                            </form>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center d-lg-block actions-container">
-                    <a data-cart-small="" href="../Cart.html" class="ml-1 site-header__cart d-none d-lg-flex" rel="nofollow">
-                        <div><span class="sicon-cart"></span></div>
-                        <div>
-                            <span><strong>سلة المشتريات</strong></span>
-                            <span id="cart_badge" class="cart_badge" data-cart-badge="" style="float: right">
-                                0
-                            </span>
-                            <span style="float: right">
-                                &nbsp;منتج -&nbsp;
-                            </span>
-                            <span id="cart_badge_total_price" data-cart-total="" style="float: right">
-                                0 &#x631;.&#x633;
-                            </span>
-                        </div>
-                    </a>
-                    <a data-cart-small="" href="../Cart.html" class="ml-1 circle-action d-lg-none site-header__mine-cart" rel="nofollow">
-                        <span class="sicon-cart"></span>
-                        <span class="badge cart_badge" data-cart-badge="">0</span>
-                    </a>
-                    <div class="d-lg-none" style="vertical-align: middle">
-                        <div class="dropdown dropdown-store-header dropdown-store-header-left hidden-xs">
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- start header -->
+    <?php
+   include 'header.php';
+   ?>
+  <!-- end header section -->
     <div class="sub-nav">
         <div class="container-fluid sub-nav-content">
             <button class="sub-nav__close">
@@ -741,150 +669,58 @@
         z-index: 1;
         margin-top: 20px;
     }
-    }
+    
 </style>
+
 <section class="section py-3">
     <div class="container">
         <div class="section-header d-flex justify-content-between align-items-center mb-4">
             <h2 class="section--title"><span> &#x671;&#x628;&#x644; </span></h2>
         </div>
         <div class="row products-grid infinite-scroll  mobile-card-no-margin  grid-col-4  eq-height">
+                       <!-- product start -->
+                 <?php
+                 include ('../../admin/config.php');
+                 $res =mysqli_query($conn,"select * from products,cate where products.cate_id=cate.cat_id and cat_name='apple_ipad'");
+                 ?>
+                 <?php foreach($res as $r):?>
                     <div class="col-xs-6 col-sm-4 col-lg-3 product-box">
                         <div class="product contain">
-                            <a href="../product/330.html" rel="canonical">
+                        <a href="../Product/158.php?id=<?php echo $r['prod_id']?>" rel="canonical">
                                     <span class="ribbons">
                                         <span class="onsale ribbon">
                                             <span class="onsep">-</span>
-                                            28
+                                            <?php
+                                          $originalPrice = $r['price'];
+                                          $discountedPrice = $r['price_after'];
+                                        $discountPercentage = (($originalPrice - $discountedPrice) / $originalPrice) * 100;
+                                        echo number_format($discountPercentage, 1, '.', '');
+                                              ?>
                                             <span class="per">%</span>
                                         </span>
                                     </span>
                                 <span class="img-cont">
-                                    <img data-src="/images/original/38d58f73-febd-405f-bb20-b8b00fe58437.jpeg" alt="&#x623;&#x628;&#x644; &#x623;&#x64A;&#x628;&#x627;&#x62F; &#x645;&#x64A;&#x646;&#x64A; &#x627;&#x644;&#x62C;&#x64A;&#x644; &#x627;&#x644;&#x633;&#x627;&#x62F;&#x633;" src="../../images/original/38d58f73-febd-405f-bb20-b8b00fe58437.jpeg" class=" lazyloaded">
+                                <img data-src="../../admin/upload/<?php echo $r['img']?>" alt="&#x62C;&#x627;&#x644;&#x627;&#x643;&#x633;&#x64A; &#x627;&#x633; 23 &#x627;&#x644;&#x62A;&#x631;&#x627; &#x630;&#x627;&#x643;&#x631;&#x647; 256" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+
                                 </span>
-                                <h3 class="product-title">&#x623;&#x628;&#x644; &#x623;&#x64A;&#x628;&#x627;&#x62F; &#x645;&#x64A;&#x646;&#x64A; &#x627;&#x644;&#x62C;&#x64A;&#x644; &#x627;&#x644;&#x633;&#x627;&#x62F;&#x633;</h3>
+                                <h3 class="product-title"><?php echo $r['name']?></h3>
                             </a>
                             <div class="product-footer" style="margin-top: auto">
                                 <p class="product-price">
-                                        <span class="price-before">4258.00 &#x631;.&#x633;</span>
-                                    <span class="price-after">3049.00 &#x631;.&#x633;</span>
+                                        <span class="price-before"><?php echo $r['price']?> &#x631;.&#x633;</span>
+                                        <span class="price-after"><?php echo $r['price_after']?> &#x631;.&#x633;</span>
                                 </p>
-                                <a href="javascript:;" class="product-add add_to_cart_btn" data-product-id="330" data-price="79" data-currency="SAR" data-is-donation="">
+                                <a href="../product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
                                     <span class="sicon-cart"></span>
                                     <span>إضافة للسلة</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-sm-4 col-lg-3 product-box">
-                        <div class="product contain">
-                            <a href="../product/336.html" rel="canonical">
-                                    <span class="ribbons">
-                                        <span class="onsale ribbon">
-                                            <span class="onsep">-</span>
-                                            27
-                                            <span class="per">%</span>
-                                        </span>
-                                    </span>
-                                <span class="img-cont">
-                                    <img data-src="/images/original/5e134403-9e54-4019-a035-ab467ec3806c.jpeg" alt="&#x623;&#x64A;&#x628;&#x627;&#x62F; &#x645;&#x64A;&#x646;&#x64A;&#x60C; 64 &#x62C;&#x64A;&#x62C;&#x627;&#x628;&#x627;&#x64A;&#x62A;" src="../../images/original/5e134403-9e54-4019-a035-ab467ec3806c.jpeg" class=" lazyloaded">
-                                </span>
-                                <h3 class="product-title">&#x623;&#x64A;&#x628;&#x627;&#x62F; &#x645;&#x64A;&#x646;&#x64A;&#x60C; 64 &#x62C;&#x64A;&#x62C;&#x627;&#x628;&#x627;&#x64A;&#x62A;</h3>
-                            </a>
-                            <div class="product-footer" style="margin-top: auto">
-                                <p class="product-price">
-                                        <span class="price-before">2788.00 &#x631;.&#x633;</span>
-                                    <span class="price-after">2030.00 &#x631;.&#x633;</span>
-                                </p>
-                                <a href="javascript:;" class="product-add add_to_cart_btn" data-product-id="336" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-lg-3 product-box">
-                        <div class="product contain">
-                            <a href="../product/339.html" rel="canonical">
-                                    <span class="ribbons">
-                                        <span class="onsale ribbon">
-                                            <span class="onsep">-</span>
-                                            19
-                                            <span class="per">%</span>
-                                        </span>
-                                    </span>
-                                <span class="img-cont">
-                                    <img data-src="/images/original/5e116491-a54f-4e2e-81c5-7eeb903e22c8.jpeg" alt="&#x623;&#x628;&#x644; &#x623;&#x64A;&#x628;&#x627;&#x62F; &#x625;&#x64A;&#x631; 4" src="../../images/original/5e116491-a54f-4e2e-81c5-7eeb903e22c8.jpeg" class=" lazyloaded">
-                                </span>
-                                <h3 class="product-title">&#x623;&#x628;&#x644; &#x623;&#x64A;&#x628;&#x627;&#x62F; &#x625;&#x64A;&#x631; 4</h3>
-                            </a>
-                            <div class="product-footer" style="margin-top: auto">
-                                <p class="product-price">
-                                        <span class="price-before">4200.00 &#x631;.&#x633;</span>
-                                    <span class="price-after">3399.00 &#x631;.&#x633;</span>
-                                </p>
-                                <a href="javascript:;" class="product-add add_to_cart_btn" data-product-id="339" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-lg-3 product-box">
-                        <div class="product contain">
-                            <a href="../product/634.html" rel="canonical">
-                                    <span class="ribbons">
-                                        <span class="onsale ribbon">
-                                            <span class="onsep">-</span>
-                                            6
-                                            <span class="per">%</span>
-                                        </span>
-                                    </span>
-                                <span class="img-cont">
-                                    <img data-src="/images/original/ec8635d2-037b-4fc6-9a57-cf60782a19ca.jpg" alt="&#x627;&#x628;&#x644;&#x200E;&#x200E; &#x200E;&#x200E;2021 &#x200E;&#x200E;-&#x200E;&#x200E; &#x622;&#x64A;&#x628;&#x627;&#x62F; &#x628;&#x631;&#x648; 12.9&#x200E;&#x200E;" src="/images/original/ec8635d2-037b-4fc6-9a57-cf60782a19ca.jpg" class=" lazyloaded">
-                                </span>
-                                <h3 class="product-title">&#x627;&#x628;&#x644;&#x200E;&#x200E; &#x200E;&#x200E;2021 &#x200E;&#x200E;-&#x200E;&#x200E; &#x622;&#x64A;&#x628;&#x627;&#x62F; &#x628;&#x631;&#x648; 12.9&#x200E;&#x200E;</h3>
-                            </a>
-                            <div class="product-footer" style="margin-top: auto">
-                                <p class="product-price">
-                                        <span class="price-before">5299.00 &#x631;.&#x633;</span>
-                                    <span class="price-after">4999.00 &#x631;.&#x633;</span>
-                                </p>
-                                <a href="javascript:;" class="product-add add_to_cart_btn" data-product-id="634" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-lg-3 product-box">
-                        <div class="product contain">
-                            <a href="../product/683.html" rel="canonical">
-                                    <span class="ribbons">
-                                        <span class="onsale ribbon">
-                                            <span class="onsep">-</span>
-                                            12
-                                            <span class="per">%</span>
-                                        </span>
-                                    </span>
-                                <span class="img-cont">
-                                    <img data-src="/images/original/5454c18b-eb05-479c-90bd-80986d1597b5.jpg" alt="&#x627;&#x64A;&#x628;&#x627;&#x62F; &#x627;&#x628;&#x644; &#x630;&#x627;&#x643;&#x631;&#x629; &#x661;&#x662;&#x668; " src="/images/original/5454c18b-eb05-479c-90bd-80986d1597b5.jpg" class=" lazyloaded">
-                                </span>
-                                <h3 class="product-title">&#x627;&#x64A;&#x628;&#x627;&#x62F; &#x627;&#x628;&#x644; &#x630;&#x627;&#x643;&#x631;&#x629; &#x661;&#x662;&#x668; </h3>
-                            </a>
-                            <div class="product-footer" style="margin-top: auto">
-                                <p class="product-price">
-                                        <span class="price-before">3200.00 &#x631;.&#x633;</span>
-                                    <span class="price-after">2800.00 &#x631;.&#x633;</span>
-                                </p>
-                                <a href="javascript:;" class="product-add add_to_cart_btn" data-product-id="683" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-        </div>
+                <?php endforeach?>
+                <!-- product end -->
+            
+                
     </div>
 </section>
 

@@ -18,7 +18,7 @@
                                                     <p> اسعار تنافسية ومنتجات اصلية يشكرون عليها </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -47,7 +47,7 @@
                                                     <p> </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -76,7 +76,7 @@
                                                     <p> شكرا لكم . منتجات جيدة وخدمة راقية </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -105,7 +105,7 @@
                                                     <p> ممتاز </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -134,7 +134,7 @@
                                                     <p> اول تجربه للطلب من هالموقع جميل وسرعه الاستجابة لديهم وسرعه التوصيل بالتوفيق </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -163,7 +163,7 @@
                                                     <p> متتاز </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -192,7 +192,7 @@
                                                     <p> Neis </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13"alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -221,7 +221,7 @@
                                                     <p> جميل جدا وتعاملك جميل وسريع في التسليم </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -238,6 +238,4 @@
         </div>
     </div>
 </section>
-
-
   <!--end of costumers reviews  -->

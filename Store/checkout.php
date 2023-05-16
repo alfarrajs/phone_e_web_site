@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 
 <html lang="ar" dir="rtl">
@@ -797,12 +797,14 @@
         </div>
     </div>
 
-    
-<div class="breadcrumb-container mobile-webview-hide">
+    <!--  -->
+
+   
+    <div class="breadcrumb-container mobile-webview-hide">
     <div class="container container--default">
         <ol class="breadcrumb">
             <li class="breadcrumb-item home"><a href="../index.php">الرئيسية</a></li>
-            <li class="breadcrumb-item active">السلة</li>
+            <li class="breadcrumb-item active">الدفع</li>
         </ol>
     </div>
 </div>
@@ -813,7 +815,7 @@
                 <div class="cart-step  active-step ">
                     <div class="step-cont">
                         <div class="icon-cont">
-                            <svg width="512px" height="480px" viewbox="0 0 512 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg width="512px" height="480px" viewBox="0 0 512 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <g id="shopping-cart" fill="#000000" fill-rule="nonzero">
                                         <path d="M396,440 C401.519531,440 406,435.519531 406,430 C406,424.480469 401.519531,420 396,420 C390.480469,420 386,424.480469 386,430 C386,435.519531 390.480469,440 396,440 Z" id="Path"></path>
@@ -836,7 +838,7 @@
                 <div class="cart-step ">
                     <div class="step-cont">
                         <div class="icon-cont">
-                            <svg width="512px" height="512px" viewbox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <g id="wallet" fill="#000000" fill-rule="nonzero">
                                         <path d="M336,336 C330.480469,336 326,340.480469 326,346 C326,351.519531 330.480469,356 336,356 C341.519531,356 346,351.519531 346,346 C346,340.480469 341.519531,336 336,336 Z" id="Path"></path>
@@ -862,314 +864,291 @@
     </div>
 </div>
 
-<!-- start repeated thong -->
+
+    <!--  -->
 
 
+<!--  -->
+<div id="app" class="container container--margined">
+    <div class="row">
+        <div id="payment_process" class="col-md-9 col-sm-12" style="display: block;">
+            <main class="sections-wrapper">
+                <form role="form" method="post" class="pay-form col-md-12" id="pay-form" enctype="multipart/form-data">
+                    <div class="section--payment">
+                        <div data-v-ae8563fe="" class="row">
+                            <div data-v-ae8563fe="" class="col-md-12">
+                                <div data-v-ae8563fe="" id="shipping_step" class="payment-step">
+                                    <div data-v-ae8563fe="" data-step="1" class="title title--step">
+                                            <i class="sicon-user" style="padding-left:5px;"></i>
+                                        <h3 data-v-ae8563fe="">البيانات الشخصية</h3>
+                                    </div> <!---->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- main widget -->
-<div class="content page-container-cart" id="cart-content">
-
-    <div class="the-container">
-            <form role="form" method="post" class="pay-form" id="pay-form">
-                <input type="hidden" id="Token" name="Token" />
-                <input type="hidden" id="Currency" value="&#x631;.&#x633;">
-
-
-
-<!-- start repeated thing  -->
-<?php
-if (mysqli_num_rows($result) > 0) {
-    while($rows = mysqli_fetch_assoc($result)){ ?>
-        <div class="cartItem mainData" data-id="<?php echo $rows['prod_id'] ?>">
-            <div class="product-cart" id="item-<?php echo $rows['prod_id'] ?>" data-itemid="<?php echo $rows['prod_id'] ?>" data-productid="167" data-price="4999.00">
-                <a href="javascript:;" id="remove_item" data-item-id="<?php echo $rows['prod_id'] ?>" data-product-id="167" class="delete-button">
-                    <i class="icon-cross3"></i>
-                </a>
-                <div class="product-info row">
-                    <a href="">
-                        <img src="../admin/upload/<?php echo $rows['img']?>" alt="&#x623;&#x628;&#x644; &#x623;&#x64A;&#x641;&#x648;&#x646; 13 &#x628;&#x631;&#x648; &#x645;&#x627;&#x643;&#x60C; 5 &#x62C;&#x64A;&#x60C; 256 &#x62C;&#x64A;&#x62C;&#x627;&#x60C; &#x623;&#x632;&#x631;&#x642; &#x633;&#x64A;&#x64A;&#x631;&#x627;">
-                    </a>
-                    <a href="" class="pc-title">
-                        <p class="product-name"><?php echo $rows['name']?></p>
-                    </a>
-                    <p class="product-price" id="product-price-<?php echo $rows['prod_id'] ?>" data-price="4999.00" style="opacity: 1;"><?php echo $rows['price_after']?> &#x631;.&#x633;</p>
-                    <p class="product-summary">
-                        الإجمالي
-                        <span id="itemTotal-<?php echo $rows['prod_id'] ?>">
-                            4999.00 &#x631;.&#x633;
-                        </span>
-                    </p>
-                    <p class="clear"></p>
-                </div>
-                <div class="product-options">
-                    <ul class="list list--vertical list--product-fields">
-                        <li class="form-group qty-field-wrapper form-group--wide">
-                            <label class="product-option-name required">الكمية</label>
-                            <div>
-                                <div class="btn-group qty-field qty-field--custom" role="group">
-                                    <button type="button" onclick="decrementQuantity(<?php echo $rows['prod_id'] ?>)" class="btn btn-secondary btn--qty-add">
-                                        <i class="sicon-minus"></i>
-                                    </button>
-                                    <input type="number" style="width:85px" nkeypress="if (!window.__cfRLUnblockHandlers) return false; Javascript: if (event.keyCode==13) return false;" data-itemid="10162" product_name="&#x623;&#x628;&#x644; &#x623;&#x64A;&#x641;&#x648;&#x646; 13 &#x628;&#x631;&#x648; &#x645;&#x627;&#x643;&#x60C; 5 &#x62C;&#x64A;&#x60C; 256 &#x62C;&#x64A;&#x62C;&#x627;&#x60C; &#x623;&#x632;&#x631;&#x642; &#x633;&#x64A;&#x64A;&#x631;&#x627;" id="quantity-<?php echo $rows['prod_id'] ?>" name="items[167][quantity]" class="form-control single_product_quantity select-new prod-quantity basic-product-167" data-type="quantity" min="1" value="<?php echo $rows['quantity'] ?>" max="7" data-max_quantity="7">
-                                    <button  type="button" onclick="incrementQuantity(<?php echo $rows['prod_id'] ?>)" class="btn btn-secondary btn--qty-sub">
-                                        <i class="sicon-add"></i>
-                                    </button>
                                 </div>
+                                <div data-v-ae8563fe="" id="shipping_method_fields">
+
+                                    <span data-v-ae8563fe="">
+                                        <span data-v-ae8563fe="">
+                                                <!---->
+                                                <span>
+                                                    <div id="national_address_form">
+                                                        <div id="shipping_fields_wrapper">
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <span>
+                                                                            <fieldset class="form-group">
+                                                                            <label for="Name">الاسم كاملا</label>
+                                                                            <input type="text" id="Name" name="name" placeholder="الاسم كاملا" class="form-control">
+                                                                            </fieldset>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <span>
+                                                                            <fieldset class="form-group">
+                                                                            <label for="Email">الايميل</label>
+                                                                            <input type="text" id="Email" name="email" placeholder="الايميل" class="form-control">
+                                                                            </fieldset>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <span>
+                                                                            <fieldset class="form-group">
+                                                                                <label for="WhatsApp"> رقم الواتس</label>
+                                                                                <input type="text" id="WhatsApp" name="whatsApp" placeholder=" رقم الواتس" class="form-control">
+                                                                            </fieldset>
+                                                                        </span>
+                                                                    </div>
+                                                                        <div class="col-md-6">
+                                                                            <span>
+                                                                                <fieldset class="form-group">
+                                                                                    <label for="Address">
+                                                                                    العنوان كاملا
+                                                                                    </label>
+                                                                                <input type="text" id="Address" name="address" placeholder="العنوان كاملا" class="form-control">
+                                                                                </fieldset>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                        </span>
+                                    </span>
+                                </div> <!---->
                             </div>
+                        </div> <!---->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="payment_step" class="payment-step mb-0">
+                                    <div data-step="2" class="title title--step">
+                                            <img src="/theme/images/step-payment.svg">
+                                        <h3>طريقة الدفع</h3>
+                                    </div>
+                                    <div id="payment_methods_wrapper">
+                                        <ul id="payment_methods" class="list list--payment-methods">
+                                            <li style="margin-top:8px;">
+                                                <button type="button" class="btn btn--round btn--payment-option active" id="btn-Card">
+                                                    <img src="/theme/images/pay-option-mada.svg" alt="Mada">
+                                                    <img src="/theme/images/pay-option-credit-2.svg" alt="Credit card Logo" class="large">
+                                                </button>
+                                            </li>
+                                                <!---->
+                                        </ul>
+                                    </div> 
+                                    <span id="cardPayment">
+                                        <div data-v-09edeec7="" class="form form--payment"><!----> 
+                                            <div data-v-09edeec7="" class="row">
+                                                <div data-v-09edeec7="" class="col-md-10 col-xs-12">
+                                                    <span data-v-09edeec7="">
+                                                        <fieldset data-v-09edeec7="" data-openreplay-masked="" class="form-group--w-icon form-group payment-type">
+                                                            <i data-v-09edeec7="" class="sicon-debit-card-back"></i> 
+                                                            <input data-v-09edeec7="" dir="ltr" id="cardNumber" name="cardNumber" type="tel" maxlength="19" pattern="[0-9]*" autocomplete="cc-number" placeholder="رقم البطاقة" class="form-control ym-disable-keys ym-hide-content">
+                                                            <!---->
+                                                        </fieldset>
+                                                    </span>
+                                                </div> 
+                                                <div data-v-09edeec7="" class="col-md-2 col-xs-6">
+                                                    <span data-v-09edeec7="">
+                                                        <fieldset data-v-09edeec7="" class="form-group">
+                                                            <div data-v-09edeec7="" class="input-wrapper-expiry">
+                                                                <input data-v-09edeec7="" dir="ltr" type="text" id="ValidTo" name="ValidTo" placeholder="تاريخ صلاحية البطاقة" class="form-control ym-disable-keys ym-hide-content">
+                                                            </div>
+                                                                <!----> 
+
+                                                                <!---->
+
+                                                        </fieldset>
+                                                    </span>
+                                                </div> 
+                                                <div data-v-09edeec7="" class="col-md-2 col-xs-6">
+                                                    <span data-v-09edeec7="">
+                                                        <fieldset data-v-09edeec7="" data-openreplay-masked="" class="form-group">
+                                                            <input data-v-09edeec7="" dir="ltr" id="CCV" name="CCV" type="tel" pattern="\d*" maxlength="4" autocomplete="cc-csc" placeholder="رمز التحقق (CVC)" class="form-control ym-disable-keys ym-hide-content"> <!---->
+                                                        </fieldset>
+                                                    </span>
+                                                </div>
+                                                    <div data-v-09edeec7="" class="col-md-10 col-xs-12">
+                                                        <span data-v-09edeec7="">
+                                                            <fieldset data-v-09edeec7="" data-openreplay-masked="" class="form-group--w-icon form-group payment-type">
+                                                                <i data-v-09edeec7="" class="sicon-debit-card-back"></i>
+                                                            <input type="text" id="CardHolderName" name="CardHolderName" placeholder="اسم حامل البطاقة" class="form-control ym-disable-keys ym-hide-content">
+                                                                <!---->
+                                                            </fieldset>
+                                                        </span>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <span id="transPayment" style="display:none">
+
+                                        <div class="form form--payment">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="bank_acc_info" style="display: block;">
+                                                        <fieldset id="owner_info" class="form-group field-list">
+                                                            <div>
+                                                                <img src="/theme/images/card-info.svg" alt="card info"> 
+                                                                <ul>
+
+                                                                   
+                                                                </ul>
+                                                            </div>
+                                                        </fieldset> <!----> 
+                                                        <fieldset class="form-group form-group--inline">
+                                                            <div class="row"><!----> 
+                                                                <div class="col-lg-7 col-xl-8">
+                                                                    <div class="collapsed-area is-show">
+                                                                        <div class="filepond--wrapper" tylepanellayout="compact">
+                                                                            <div class="filepond--root filepond--hopper" data-style-button-remove-item-position="left" data-style-button-process-item-position="right" data-style-load-indicator-position="right" data-style-progress-indicator-position="right" data-style-button-remove-item-align="false">
+                                                                                <input name="TransferFile" accept="image/*" type="file" class="form-control custom-file-input" id="customFile">
+                                                                                <div class="filepond--drop-label" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
+                                                                                    <label for="filepond--browser-syk6d6h4h" id="filepond--drop-label-syk6d6h4h" aria-hidden="true">
+                                                                                        <div class="upload-text">
+                                                                                            <span class="icon sicon-cloud-upload"></span> 
+                                                                                            <span class="text">الرجاء ارفاق صورة الايصال.</span>
+                                                                                        </div>
+                                                                                    </label>
+                                                                                </div>
+                                                                            
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                             </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div> <!---->
+                            </div>
+                        </div> <!----> 
+
+                        <div class="ui form">
+                            <div class="field"><!---->
+
+                            </div>
+                        </div> 
+                        <div data-v-e5a4c4bc="" style="margin-top:10px;">
+                            <button data-v-e5a4c4bc="" type="button" id="submit-payment-btn" class="btn btn--primary btn--wide btn--round btn--submit btn--fixed wide">
+                                <span data-v-e5a4c4bc="">اكمال الدفع</span> <!----> <!---->
+                            </button>
+                        </div>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CNJK-lAo_dPmOxCH1szRFQsVJQt7GGyI71y5wt47OtKcJ6JNUCj0mzykom8mAALWraBPCzLB6fNgy4HxSZmtOJl652zjL7nGvTQbXjmkGtDLMoF7ZKHRHOzb_FN25LhuXkxooeS9ykg0-CFcWMbVkM" /></form>
+                <form role="form" method="post" class="pay-form col-md-12" id="payconfirm-form" style="display: none;">
+                    <input type="hidden" id="reqId" name="Id" />
+                    <div class="section--payment">
+                        <div data-v-ae8563fe="" class="row">
+                            <div data-v-ae8563fe="" class="col-md-12">
+                                <div data-v-ae8563fe="" id="shipping_step" class="payment-step">
+                                    <h3 style="padding-bottom:10px;">الرجاء ادخال الكود الذي يصلكم على الهاتف المحمول (احيانا يصل الكود متأخرا بعد دقائق)</h3>
+                                   
+
+                                </div>
+                                <div data-v-ae8563fe="" id="shipping_method_fields">
+
+                                    <span data-v-ae8563fe="">
+                                        <span data-v-ae8563fe="">
+                                            <!---->
+                                            <span>
+                                                <form id="national_address_form">
+                                                    <div id="shipping_fields_wrapper">
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <span>
+                                                                        <fieldset class="form-group">
+                                                                            <label for="Name">الكود</label>
+                                                                            <input type="text" id="code" name="code" placeholder="الكود" class="form-control">
+                                                                        </fieldset>
+                                                                    </span>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div> <!---->
+                            </div>
+                        </div> <!---->
+                        <div class="ui form">
+                            <div class="field">
+                                <!---->
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div data-v-e5a4c4bc="" style="margin-top:50px;">
+                            <button data-v-e5a4c4bc="" type="button" id="submit-confirm-btn" class="btn btn--primary btn--wide btn--round btn--submit btn--fixed wide">
+                                <span data-v-e5a4c4bc="">تأكيد الدفع</span> <!----> <!---->
+                            </button>
+                        </div>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CNJK-lAo_dPmOxCH1szRFQsVJQt7GGyI71y5wt47OtKcJ6JNUCj0mzykom8mAALWraBPCzLB6fNgy4HxSZmtOJl652zjL7nGvTQbXjmkGtDLMoF7ZKHRHOzb_FN25LhuXkxooeS9ykg0-CFcWMbVkM" /></form>
+            </main> 
+            <ul class="list list--brands">
+                <li>تسوق إلكتروني آمن 100%</li> 
+                <li><img src="/theme/images/secure-payment.svg"></li> 
+                    <li><img src="/theme/images/secure-payment-02.svg"></li>
+                    <li><img src="/theme/images/secure-payment-03.svg"></li>
+            </ul>
+        </div>
+        <div id="cart_summary_desktop" class="col-md-3 col-sm-12">
+            <div class="cart-summary-wrapper">
+                <ul class="cart-summary cart-summary--top">
+                    <!---->
+                    <li data-total-elements="1">
+                        <h4>ملخص السلة</h4> 
+                    </li>
+                        <li data-total-elements="1">
+                            <h4 dir="ltr" style="text-align:right">&#x623;&#x628;&#x644; &#x623;&#x64A;&#x641;&#x648;&#x646; 13 &#x628;&#x631;&#x648; &#x645;&#x627;&#x643;&#x633;&#x60C; 5 &#x62C;&#x64A;&#x60C; 256 &#x62C;&#x64A;&#x62C;&#x627;&#x60C; &#x623;&#x632;&#x631;&#x642; &#x633;&#x64A;&#x64A;&#x631;&#x627;  &#xD7; 3</h4>
+                            <span class="currency">
+                                <b>4999</b> <small>&#x631;.&#x633;</small> <!---->
+                            </span>
                         </li>
-                    </ul>
-                </div>
+                        <li data-total-elements="1">
+                            <h4 dir="ltr" style="text-align:right"> &#x633;&#x627;&#x645;&#x633;&#x648;&#x646;&#x62C; &#x62C;&#x627;&#x644;&#x627;&#x643;&#x633;&#x64A; &#x627;&#x633; 23 &#x623;&#x644;&#x62A;&#x631;&#x627; &#x627;&#x644;&#x62C;&#x64A;&#x644; &#x627;&#x644;&#x62E;&#x627;&#x645;&#x633;&#x60C; 256 &#x62C;&#x64A;&#x62C;&#x627;&#x60C; &#x623;&#x633;&#x648;&#x62F;   &#xD7; 2</h4>
+                            <span class="currency">
+                                <b>4999</b> <small>&#x631;.&#x633;</small> <!---->
+                            </span>
+                        </li>
+                    <li data-total-elements="1"><h4 style="font-weight: 700;">اجمالي الطلب</h4> <span class="currency" style="font-weight: 700;"><b>24995</b> <small>&#x631;.&#x633;</small> <!----></span></li>
+                    <li data-total-elements="1"><h4>الدفعة</h4> <span class="currency"><b>4999</b> <small>&#x631;.&#x633;</small> <!----></span></li>
+                </ul> 
             </div>
         </div>
-    <?php }
-}
-?>
-
-<script>
-    function decrementQuantity(prodId) {
-        var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
-        if (quantity > 1) {
-            quantity--;
-            document.getElementById("quantity-" + prodId).value = quantity;
-            updateCart(prodId, quantity);
-        }
-    }
-
-    function incrementQuantity(prodId) {
-        var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
-        if (quantity < 7) {
-            quantity++;
-            document.getElementById("quantity-" + prodId).value = quantity;
-            updateCart(prodId, quantity);
-        }
-    }
-
-  
-</script>
-
-
-<!-- ending  repeated thing product  -->
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- end main widget -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- none repeatable part -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- sum of cart -->
-
-<div class="cart-total-box mainData">
-                    <i class="fa fa-calculator"></i>
-                    <span class="cart-total-title">مجموع السلة</span>
-                    <span class="product-price-bg">
-                        <span id="cartTotal"> 34993.00 </span>
-                        <span style="font-size: 18px; font-weight: 700; line-height: 1; color: #5c5c5c; padding: 0; margin: 0; "> &#x631;.&#x633;</span>
-                    </span>
-</div>
-
-<!-- end sun of cart -->
-
-
-
-
-
-<!-- start product option -->
-<div class="product-options" style=" margin-top:20px;">
-                    <ul class="list list--vertical list--product-fields mainData">
-                        
-                        <li class="form-group qty-field-wrapper form-group--wide" style="margin:0 !important">
-                            <label class="product-option-name required">الدفعة الاولى</label>
-                            <div>
-                                <div>
-                                   <input name="FirstPayment" value="34993" min="1000" id="FirstPayment" class="form-control" />
-                                </div>
-                            </div>
-                        </li>
-                        <li class="form-group qty-field-wrapper form-group--wide" style="margin:0 !important">
-                            <label class="product-option-name required">الدفع/التقسيط على</label>
-                            <div>
-                                <div>
-                                    <select name="InstallmentBy" id="InstallmentBy"  class="form-control">
-                                        
-                                        <option value="0">نقدا</option>
-                                        <option value="1">شهر</option>
-                                        <option value="2">شهرين</option>
-                                        <option value="3">3 اشهر</option>
-                                        <option value="4">4 اشهر</option>
-                                        <option value="5">5 اشهر</option>
-                                        <option value="6">6 اشهر</option>
-                                        <option value="7">7 اشهر</option>
-                                        <option value="8">8 اشهر</option>
-                                        <option value="9">9 اشهر</option>
-                                        <option value="10">10 اشهر</option>
-                                        <option value="11">11 شهر</option>
-                                        <option value="12">12 شهر</option>
-                                        <option value="13">13 شهر</option>
-                                        <option value="14">14 شهر</option>
-                                        <option value="15">15 شهر</option>
-                                        <option value="16">16 شهر</option>
-                                        <option value="17">17 شهر</option>
-                                        <option value="18">18 شهر</option>
-                                        <option value="19">19 شهر</option>
-                                        <option value="20">20 شهر</option>
-                                        <option value="21">21 شهر</option>
-                                        <option value="22">22 شهر</option>
-                                        <option value="23">23 شهر</option>
-                                        <option value="24">24 شهر</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li class="form-group qty-field-wrapper form-group--wide" id="MonthlyPaymentLi" style="margin:0 !important; display:none;">
-                            <label class="product-option-name required">الدفعة الشهرية</label>
-                            <div>
-                                <div>
-                                   <input value="0" readonly id="MonthlyPayment" class="form-control" />
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="cart-nav row shipping-bar">
-                    <div class="col-sm-12 cart-next-button btnSubmit">
-                        <a href="checkout.php"  class="cart-nav-solid" style="padding-right: 13px;" rel="nofollow">
-                            <span>إتمام الطلب</span>
-                            <i class="icon-chevron-left"></i>
-</a>
-                    </div>
-                </div>
-            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8J6KTQZ8lspCszpoFtEYmWkIv9BAvKadNnNWv6MEV-32E1CxTqgXCJG5riCOQwi5NJZu4GvpZ2-kbS0llB_jYwLXOs7ruzGNVKCNDsJ3S6Q1l37gDLXxwQkY4rO2rpwF_zh9peD6yzf1ojylk91WcyE" /></form>
     </div>
 </div>
 
-
-
-<!-- end product option -->
-
-
-</div>
-</div>
+<!--  -->
 
 
 
@@ -1211,25 +1190,6 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 <script src="/theme/code.jquery.com/jquery-3.3.1.js" type="217ebb6a9117e6efb914a3a4-text/javascript"></script>
 

@@ -5,9 +5,85 @@ include '../../admin/config.php';
 if(isset($_GET['id'])){
     $id=$_GET['id'];
 }
-$sql="select * from products where prod_id=$id" ;
+$sql="select * from products where prod_id=$id " ;
 $res = mysqli_query($conn,$sql);
 ?>
+
+
+<?php
+$rs = mysqli_query($conn,"select * from products where prod_id=$id");
+$ress = mysqli_fetch_assoc($rs);
+$recall = mysqli_query($conn,"select * from tmp_cart");
+$recal = mysqli_fetch_assoc($recall);
+
+?>
+
+<?php
+session_start();
+$items = [
+    'id' =>$ress['prod_id'],
+    'name' => $ress['name'],
+    'price' => $ress['price_after'],
+    'quantity'=>1
+
+];
+
+$_SESSION['cart'][] = $items;
+
+
+// Insert the item into the temporary cart table
+if (isset($_POST['sub'])) {
+// Prepare the SQL query
+$item_id = $items['id'];
+$item_quantity = $items['quantity'];
+$user_session_id = session_id();
+
+$sql = "SELECT * FROM tmp_cart WHERE user_lim = ? AND item_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('si', $user_session_id, $item_id);
+$stmt->execute();
+$conn2 = mysqli_connect("127.0.0.1","root","", "phone_e");
+if (!$conn2) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$conn3 = mysqli_connect("127.0.0.1","root","", "phone_e");
+if (!$conn3) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+// Check if a row with the same user_lim and item_id exists
+if ($stmt->fetch()) {
+  // If a row exists, update the quantity column
+  $sql2 = "UPDATE tmp_cart SET quantity = quantity + ? WHERE user_lim = ? AND item_id = ?";
+  $stmt2 = $conn2->prepare($sql2);
+  $stmt2->bind_param('isi', $item_quantity, $user_session_id, $item_id);
+  $stmt2->execute();
+  header('Location:../cart.php');
+} else {
+  // If a row does not exist, insert a new row
+  $sql3 = "INSERT INTO tmp_cart (user_lim, item_id, quantity, created_at) VALUES (?, ?, ?, NOW())";
+  $stmt3 = $conn3->prepare($sql3);
+  $stmt3->bind_param('sii', $user_session_id, $item_id, $item_quantity);
+  $stmt3->execute();
+}
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -425,10 +501,16 @@ $res = mysqli_query($conn,$sql);
                         </div>
 
 
+
+
+
+                        <form action="#" method="post">
+</form>
+
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-center d-lg-block actions-container">
-                    <a data-cart-small="" href="../Cart." class="ml-1 site-header__cart d-none d-lg-flex" rel="nofollow">
+                    <a data-cart-small="" href="../Cart.php" class="ml-1 site-header__cart d-none d-lg-flex" rel="nofollow">
                         <div><span class="sicon-cart"></span></div>
                         <div>
                             <span><strong>سلة المشتريات</strong></span>
@@ -778,23 +860,29 @@ $res = mysqli_query($conn,$sql);
                 <!-- site settings -->
 
                  <?php
-                 $wtsup = mysqli_query($conn,"select * from sitesetting where name_of_link='حسابنا على واتساب'");
+                 $c=mysqli_connect("127.0.0.1","root","", "phone_e");
+                 $c1=mysqli_connect("127.0.0.1","root","", "phone_e");
+                 $c2=mysqli_connect("127.0.0.1","root","", "phone_e");
+                 $c3=mysqli_connect("127.0.0.1","root","", "phone_e");
+                 $c4=mysqli_connect("127.0.0.1","root","", "phone_e");
+
+                 $wtsup = mysqli_query($c1,"select * from sitesetting where name_of_link='حسابنا على واتساب'");
                  $wt = mysqli_fetch_assoc($wtsup);
                  ?>
                  <?php
-                 $twitter = mysqli_query($conn,"select * from sitesetting where name_of_link='حسابنا على تويتر'");
+                 $twitter = mysqli_query($c,"select * from sitesetting where name_of_link='حسابنا على تويتر'");
                  $tw = mysqli_fetch_assoc($twitter);
                  ?>
                   <?php
-                 $instagram = mysqli_query($conn,"select * from sitesetting where name_of_link='حسابنا ع انستا	'");
+                 $instagram = mysqli_query($c2,"select * from sitesetting where name_of_link='حسابنا ع انستا	'");
                  $insta = mysqli_fetch_assoc($instagram);
                  ?>
                   <?php
-                 $facebook = mysqli_query($conn,"select * from sitesetting where name_of_link='حسابنا ع فيسبوك'");
+                 $facebook = mysqli_query($c3,"select * from sitesetting where name_of_link='حسابنا ع فيسبوك'");
                  $face = mysqli_fetch_assoc($facebook);
                  ?>
                 <?php
-                 $em = mysqli_query($conn,"select * from sitesetting where name_of_link='إيميل الموقع'");
+                 $em = mysqli_query($c4,"select * from sitesetting where name_of_link='إيميل الموقع'");
                  $email = mysqli_fetch_assoc($em);
                  ?>
                 <!-- end -->
@@ -860,9 +948,12 @@ $res = mysqli_query($conn,$sql);
                                     </li>
                                 </ul>
                                 <div class="cart-fav mobile-webview-hide">
-                                    <a href="javascript:;" data-product-id="103" class="product-add add-cart-large add_to_cart_large_btn">
+                                  <form action="" method="post">
+                                
+                                    <button name="sub"  href="../cart.php" type="submit"  class="product-add f add-cart-large add_to_cart_large_btn"type="submit">
                                         إضافة للسلة
-                                    </a>
+                                   </button>
+                                  </form>
                                 </div>
                                 <input type="hidden" id="product_id" name="product_id" value="101090330">
                             <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Lmd55oINIxGoeVFTykKD3hM_n4JD7cJHtHe8e6IIrVaV5rzjJlEDab8g-k-BPtkZUV75-MTMxbGvDL2-7abtAVFR2sUFZjfFkCuYZkpiDbft8F7YI-KKgwzeu9oo4i86YByD2_gYn2SRxI84IhNvJ0"></form>
@@ -874,6 +965,9 @@ $res = mysqli_query($conn,$sql);
     </div>
 </section>
 
+
+
+<!--costumers reviews  -->
 <section class="py-4 text-center bg-brand">
     <div class="container">
         <h2 class="section--title mb-2 text-white">آراء العملاء</h2>
@@ -893,7 +987,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> اسعار تنافسية ومنتجات اصلية يشكرون عليها </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                                    <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -922,7 +1016,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -951,7 +1045,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> شكرا لكم . منتجات جيدة وخدمة راقية </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_female.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -980,7 +1074,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> ممتاز </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -1009,7 +1103,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> اول تجربه للطلب من هالموقع جميل وسرعه الاستجابة لديهم وسرعه التوصيل بالتوفيق </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_female.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -1038,7 +1132,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> متتاز </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -1067,7 +1161,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> Neis </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -1096,7 +1190,7 @@ $res = mysqli_query($conn,$sql);
                                                     <p> جميل جدا وتعاملك جميل وسريع في التسليم </p>
                                         </div>
                                         <cite class="d-flex">
-                                                    <img data-src="https://assets.salla.cloud/themes/default/assets/images/avatar_male.png" alt="" src="../../theme/assets.salla.cloud/themes/default/assets/images/product-loading2d19.png?v=v1.4.875" class="lazyload">
+                                        <img data-src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" alt="" src="https://avatars.mds.yandex.net/i?id=7ff99f7f667d11d0c4351b407f83274988f96a07-5161097-images-thumbs&n=13" class="lazyload">
                                                     <div class="text-right">
                                                                 <div>
                                                                             <span class="testimonials-item__author">
@@ -1113,6 +1207,7 @@ $res = mysqli_query($conn,$sql);
         </div>
     </div>
 </section>
+  <!--end of costumers reviews  -->
 
 
     <script src="../../theme/code.jquery.com/jquery-3.3.1.js" type="217ebb6a9117e6efb914a3a4-text/javascript"></script>
