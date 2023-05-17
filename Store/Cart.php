@@ -1119,8 +1119,33 @@ if (mysqli_num_rows($result) > 0) {
 <div class="cart-total-box mainData">
                     <i class="fa fa-calculator"></i>
                     <span class="cart-total-title">مجموع السلة</span>
+                    <?php 
+                        $conn = mysqli_connect("127.0.0.1","root","", "phone_e");
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $user_session_id = session_id();
+
+
+                        $sql = "SELECT COUNT(tmp_cart.item_id) AS num_products, 
+                        SUM(tmp_cart.quantity) AS total_quantity, 
+                        SUM(products.price * tmp_cart.quantity) AS total_price
+                        FROM tmp_cart
+                        JOIN products ON tmp_cart.item_id = products.prod_id 
+                        WHERE tmp_cart.user_lim = ?";
+
+                    
+
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param('s', $user_session_id);
+                        $stmt->execute();
+
+                        $stmt->bind_result($num_products, $total_quantity,$total_price);
+                        $stmt->fetch();
+                        
+                    ?>
                     <span class="product-price-bg">
-                        <span id="cartTotal"> 34993.00 </span>
+                        <span id="cartTotal"> <?php echo $total_price; ?> </span>
                         <span style="font-size: 18px; font-weight: 700; line-height: 1; color: #5c5c5c; padding: 0; margin: 0; "> &#x631;.&#x633;</span>
                     </span>
 </div>
