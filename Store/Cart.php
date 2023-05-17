@@ -946,20 +946,30 @@ if (mysqli_num_rows($result) > 0) {
 <script>
     function decrementQuantity(prodId) {
         var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
-        if (quantity > 1) {
             quantity--;
             document.getElementById("quantity-" + prodId).value = quantity;
-            updateCart(prodId, quantity);
-        }
+            updateCart(prodId, "decrement");
+        
     }
 
     function incrementQuantity(prodId) {
         var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
-        if (quantity < 7) {
             quantity++;
             document.getElementById("quantity-" + prodId).value = quantity;
-            updateCart(prodId, quantity);
+        updateCart(prodId,  "increment");
+
+    }
+
+    function updateCart(prodId, type){
+        $.ajax({
+        url: "../change_item_quantity.php", // PHP script file
+        type: "POST",
+        data: {'prodId':prodId,'type':type}, // Data to be sent to the server
+        success: function(response) {
+            // Display the response
+            toastr.success(response);
         }
+    });
     }
 
   

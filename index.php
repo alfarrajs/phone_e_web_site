@@ -860,10 +860,22 @@
                                         <span class="price-before"><?php echo $r['price']?> &#x631;.&#x633;</span>
                                     <span class="price-after"><?php echo $r['price_after']?>&#x631;.&#x633;</span>
                                 </p>
-                                <a href="Store/product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
+                                <!-- <a href="Store/product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
                                     <span class="sicon-cart"></span>
                                     <span>إضافة للسلة</span>
-                                </a>
+                                </a> -->
+
+                                
+                                  <form action="add_to_cart.php" method="post" id="add_to_cart_form">
+                                        <input type="hidden" name="_token" value="IkhHIFqEP3q0i7tOxx6tNijekmfCIttoFQGLrRQY">
+                                        <input type="hidden" name="prod_id" value="<?php echo $r['prod_id'] ?>" />
+                                        <input type="hidden" name="name" value="<?php echo $r['name'] ?>" />
+                                        <input type="hidden" name="price_after" value="<?php echo $r['price_after'] ?>" />
+                                    <button name="sub" type="submit" class="product-add add_to_cart_btn" type="submit">
+                                        <span class="sicon-cart"></span>
+                                        إضافة للسلة
+                                    </button>
+                                  </form>
                             </div>
                         </div>
                     </div>
@@ -1511,31 +1523,54 @@ $aa = mysqli_fetch_assoc($a);
     <script src="ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(".product-add, .add_to_cart_large_btn").off("click").click(function () {
-                var id = $(this).attr("data-product-id");
-                showLoading();
-                setTimeout(function () {
+            // $(".product-add, .add_to_cart_large_btn").off("click").click(function () {
+            //     var id = $(this).attr("data-product-id");
+            //     showLoading();
+            //     setTimeout(function () {
 
-                    $.ajax({
-                        type: "post",
-                        url: '/Store/AddItemToBasket/',
-                        data: { 'productId': id, "quantity": 1 },
-                        success: function (data) {
-                            if (data.success) {
-                                toastr.success(data.message);
-                                hideLoading();
-                                $(".cart_badge").text(data.count);
-                                $("#cart_badge_total_price").text(data.total);
-                            }
-                            else {
-                                toastr.error(data.message);
-                                hideLoading();
-                            }
-                        }
-                    });
-                }, 10);
+            //         $.ajax({
+            //             type: "post",
+            //             url: '/Store/AddItemToBasket/',
+            //             data: { 'productId': id, "quantity": 1 },
+            //             success: function (data) {
+            //                 if (data.success) {
+            //                     toastr.success(data.message);
+            //                     hideLoading();
+            //                     $(".cart_badge").text(data.count);
+            //                     $("#cart_badge_total_price").text(data.total);
+            //                 }
+            //                 else {
+            //                     toastr.error(data.message);
+            //                     hideLoading();
+            //                 }
+            //             }
+            //         });
+            //     }, 10);
 
+            // });
+
+
+
+
+
+            $("#add_to_cart_form").submit(function(e) {
+                e.preventDefault(); // Prevent default form submission
+                var form_data = $(this).serialize(); // Serialize form data
+                $.ajax({
+                    url: "add_to_cart.php", // PHP script file
+                    type: "POST",
+                    data: form_data, // Data to be sent to the server
+                    success: function(response) {
+                        // Display the response
+                        toastr.success(response);
+                    }
+                });
             });
+
+
+
+
+
         });
     </script>
     
