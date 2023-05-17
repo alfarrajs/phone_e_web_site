@@ -4,10 +4,10 @@ include 'admin/config.php';
 session_start();
 
 $items = [
-    'id' =>$_POST['prod_id'],
-    'name' => $_POST['name'],
-    'price' => $_POST['price_after'],
-    'quantity'=>1
+  'id' => $_POST['prod_id'],
+  'name' => $_POST['name'],
+  'price' => $_POST['price_after'],
+  'quantity' => 1
 
 ];
 
@@ -18,20 +18,20 @@ $_SESSION['cart'][] = $items;
 // Prepare the SQL query
 $item_id = $items['id'];
 $item_quantity = $items['quantity'];
- $user_session_id = session_id();
+$user_session_id = session_id();
 
 $sql = "SELECT * FROM tmp_cart WHERE user_lim = ? AND item_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('si', $user_session_id, $item_id);
 $stmt->execute();
-$conn2 = mysqli_connect("127.0.0.1","root","", "phone_e");
+$conn2 = mysqli_connect("127.0.0.1", "root", "", "phone_e");
 if (!$conn2) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 
-$conn3 = mysqli_connect("127.0.0.1","root","", "phone_e");
+$conn3 = mysqli_connect("127.0.0.1", "root", "", "phone_e");
 if (!$conn3) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 // Check if a row with the same user_lim and item_id exists
 if ($stmt->fetch()) {
@@ -40,7 +40,12 @@ if ($stmt->fetch()) {
   $stmt2 = $conn2->prepare($sql2);
   $stmt2->bind_param('isi', $item_quantity, $user_session_id, $item_id);
   $stmt2->execute();
-//   header('Location:../index.php');
+  //   header('Location:../index.php');
+
+
+
+
+
 } else {
   // If a row does not exist, insert a new row
   $sql3 = "INSERT INTO tmp_cart (user_lim, item_id, quantity, created_at) VALUES (?, ?, ?, NOW())";
@@ -49,6 +54,42 @@ if ($stmt->fetch()) {
   $stmt3->execute();
 }
 
-echo "تم الاضافة لسلة بنجاح";
 
-?>
+
+
+$conn5 = mysqli_connect("127.0.0.1", "root", "", "phone_e");
+if (!$conn5) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+
+$sql5 = "SELECT COUNT(tmp_cart.item_id) AS num_products, 
+SUM(tmp_cart.quantity) AS total_quantity, 
+SUM(products.price * tmp_cart.quantity) AS total_price
+FROM tmp_cart
+JOIN products ON tmp_cart.item_id = products.prod_id 
+WHERE tmp_cart.user_lim = ?";
+
+
+
+$stmt5 = $conn5->prepare($sql5);
+$stmt5->bind_param('s', $user_session_id);
+$stmt5->execute();
+
+$stmt5->bind_result($num_products, $total_quantity, $total_price);
+$stmt5->fetch();
+
+
+
+
+
+
+$response = ['success' => true, 'message' => 'تم الاضافة بنجاح', 'count' => $num_products, 'total' => $total_price];
+echo json_encode($response);
+
+
+
+
+
+
+mysqli_close($conn);

@@ -82,7 +82,10 @@
                                 &nbsp;منتج -&nbsp;
                             </span>
                             <span id="cart_badge_total_price" data-cart-total="" style="float: right">
-                                <?php echo $total_price; ?> &#x631;.&#x633;
+                                <?php echo $total_price ; ?> 
+                            </span>
+                            <span style="margin-right:5px">
+                                 &#x631;.&#x633;
                             </span>
                         </div>
                     </a>

@@ -456,7 +456,10 @@ session_start();
                                 &nbsp;منتج -&nbsp;
                             </span>
                             <span id="cart_badge_total_price" data-cart-total="" style="float: right">
-                                <?php echo $total_price; ?> &#x631;.&#x633;
+                                <?php echo $total_price ; ?> 
+                            </span>
+                            <span style="margin-right:5px">
+                                 &#x631;.&#x633;
                             </span>
                         </div>
                     </a>
@@ -1591,7 +1594,14 @@ $aa = mysqli_fetch_assoc($a);
                     data: form_data, // Data to be sent to the server
                     success: function(response) {
                         // Display the response
-                        toastr.success(response);
+                        data = JSON.parse(response);
+
+                        if (data.success) {
+                            $(".cart_badge").text(data.count);
+                            $("#cart_badge_total_price").text(data.total);
+                            toastr.success(data.message);
+                        }
+
                     }
                 });
             });

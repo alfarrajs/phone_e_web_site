@@ -523,7 +523,10 @@
                                 &nbsp;منتج -&nbsp;
                             </span>
                             <span id="cart_badge_total_price" data-cart-total="" style="float: right">
-                                <?php echo $total_price; ?> &#x631;.&#x633;
+                                <?php echo $total_price ; ?> 
+                            </span>
+                            <span style="margin-right:5px">
+                                 &#x631;.&#x633;
                             </span>
                         </div>
                     </a>
@@ -940,7 +943,10 @@ if (mysqli_num_rows($result) > 0) {
                     <p class="product-summary">
                         الإجمالي
                         <span id="itemTotal-<?php echo $rows['prod_id'] ?>">
-                        <?php echo $rows['price'] * $rows['quantity'] ;?> &#x631;.&#x633;
+                        <?php echo $rows['price'] * $rows['quantity'] ;?> 
+                        </span>
+                        <span>
+                        &#x631;.&#x633;
                         </span>
                     </p>
                     <p class="clear"></p>
@@ -997,7 +1003,15 @@ if (mysqli_num_rows($result) > 0) {
         data: {'prodId':prodId,'type':type}, // Data to be sent to the server
         success: function(response) {
             // Display the response
-            toastr.success(response);
+            data = JSON.parse(response);
+
+            if (data.success) {
+                $(".cart_badge").text(data.count);
+                $("#cart_badge_total_price").text(data.total);
+                $("#itemTotal-"+data.prodId).text(data.prodIdtotal);
+
+                toastr.success(data.message);
+            }
         }
     });
     }
