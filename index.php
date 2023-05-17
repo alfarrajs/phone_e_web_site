@@ -895,7 +895,7 @@ session_start();
                                 </a> -->
 
                                 
-                                  <form action="add_to_cart.php" method="post" id="add_to_cart_form">
+                                  <form action="add_to_cart.php" method="post" class="add_to_cart_form">
                                         <input type="hidden" name="_token" value="IkhHIFqEP3q0i7tOxx6tNijekmfCIttoFQGLrRQY">
                                         <input type="hidden" name="prod_id" value="<?php echo $r['prod_id'] ?>" />
                                         <input type="hidden" name="name" value="<?php echo $r['name'] ?>" />
@@ -1582,7 +1582,7 @@ $aa = mysqli_fetch_assoc($a);
 
 
 
-            $("#add_to_cart_form").submit(function(e) {
+            $(".add_to_cart_form").submit(function(e) {
                 e.preventDefault(); // Prevent default form submission
                 var form_data = $(this).serialize(); // Serialize form data
                 $.ajax({
