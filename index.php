@@ -1011,10 +1011,16 @@ session_start();
                                         <span class="price-before"><?php echo $r['price']?> &#x631;.&#x633;</span>
                                     <span class="price-after"><?php echo $r['price_after']?>&#x631;.&#x633;</span>
                                 </p>
-                                <a href="Store/product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
+                                <form action="add_to_cart.php" method="post" class="add_to_cart_form">
+                                        <input type="hidden" name="_token" value="IkhHIFqEP3q0i7tOxx6tNijekmfCIttoFQGLrRQY">
+                                        <input type="hidden" name="prod_id" value="<?php echo $r['prod_id'] ?>" />
+                                        <input type="hidden" name="name" value="<?php echo $r['name'] ?>" />
+                                        <input type="hidden" name="price_after" value="<?php echo $r['price_after'] ?>" />
+                                    <button name="sub" type="submit" class="product-add add_to_cart_btn" type="submit">
+                                        <span class="sicon-cart"></span>
+                                        إضافة للسلة
+                                    </button>
+                                  </form>
                             </div>
                         </div>
                     </div>
@@ -1084,10 +1090,16 @@ session_start();
                                         <span class="price-before"><?php echo $r['price']?> &#x631;.&#x633;</span>
                                     <span class="price-after"><?php echo $r['price_after']?>&#x631;.&#x633;</span>
                                 </p>
-                                <a href="Store/product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
+                                <form action="add_to_cart.php" method="post" class="add_to_cart_form">
+                                        <input type="hidden" name="_token" value="IkhHIFqEP3q0i7tOxx6tNijekmfCIttoFQGLrRQY">
+                                        <input type="hidden" name="prod_id" value="<?php echo $r['prod_id'] ?>" />
+                                        <input type="hidden" name="name" value="<?php echo $r['name'] ?>" />
+                                        <input type="hidden" name="price_after" value="<?php echo $r['price_after'] ?>" />
+                                    <button name="sub" type="submit" class="product-add add_to_cart_btn" type="submit">
+                                        <span class="sicon-cart"></span>
+                                        إضافة للسلة
+                                    </button>
+                                  </form>
                             </div>
                         </div>
                     </div>
@@ -1204,10 +1216,16 @@ session_start();
                                         <span class="price-before"><?php echo $r['price']?> &#x631;.&#x633;</span>
                                     <span class="price-after"><?php echo $r['price_after']?>&#x631;.&#x633;</span>
                                 </p>
-                                <a href="Store/product/158.php?id=<?php echo $r['prod_id']?>" class="product-add add_to_cart_btn" data-product-id="691" data-price="79" data-currency="SAR" data-is-donation="">
-                                    <span class="sicon-cart"></span>
-                                    <span>إضافة للسلة</span>
-                                </a>
+                                <form action="add_to_cart.php" method="post" class="add_to_cart_form">
+                                        <input type="hidden" name="_token" value="IkhHIFqEP3q0i7tOxx6tNijekmfCIttoFQGLrRQY">
+                                        <input type="hidden" name="prod_id" value="<?php echo $r['prod_id'] ?>" />
+                                        <input type="hidden" name="name" value="<?php echo $r['name'] ?>" />
+                                        <input type="hidden" name="price_after" value="<?php echo $r['price_after'] ?>" />
+                                    <button name="sub" type="submit" class="product-add add_to_cart_btn" type="submit">
+                                        <span class="sicon-cart"></span>
+                                        إضافة للسلة
+                                    </button>
+                                  </form>
                             </div>
                         </div>
                     </div>

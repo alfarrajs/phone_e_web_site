@@ -1009,6 +1009,7 @@ if (mysqli_num_rows($result) > 0) {
                 $(".cart_badge").text(data.count);
                 $("#cart_badge_total_price").text(data.total);
                 $("#itemTotal-"+data.prodId).text(data.prodIdtotal);
+                $("#cartTotal").text(data.total);
 
                 toastr.success(data.message);
             }
