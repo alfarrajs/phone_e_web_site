@@ -487,18 +487,43 @@
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-center d-lg-block actions-container">
-                    <a data-cart-small="" href="Cart.php" class="ml-1 site-header__cart d-none d-lg-flex" rel="nofollow">
+                <?php 
+                        $conn = mysqli_connect("127.0.0.1","root","", "phone_e");
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $user_session_id = session_id();
+
+
+                        $sql = "SELECT COUNT(tmp_cart.item_id) AS num_products, 
+                        SUM(tmp_cart.quantity) AS total_quantity, 
+                        SUM(products.price * tmp_cart.quantity) AS total_price
+                        FROM tmp_cart
+                        JOIN products ON tmp_cart.item_id = products.prod_id 
+                        WHERE tmp_cart.user_lim = ?";
+
+                    
+
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param('s', $user_session_id);
+                        $stmt->execute();
+
+                        $stmt->bind_result($num_products, $total_quantity,$total_price);
+                        $stmt->fetch();
+                        
+                    ?>
+                    <a data-cart-small="" href="Store/Cart.php" class="ml-1 site-header__cart d-none d-lg-flex" rel="nofollow">
                         <div><span class="sicon-cart"></span></div>
                         <div>
                             <span><strong>سلة المشتريات</strong></span>
                             <span id="cart_badge" class="cart_badge" data-cart-badge="" style="float: right">
-                                0
+                                <?php echo $num_products; ?>
                             </span>
                             <span style="float: right">
                                 &nbsp;منتج -&nbsp;
                             </span>
                             <span id="cart_badge_total_price" data-cart-total="" style="float: right">
-                                0 &#x631;.&#x633;
+                                <?php echo $total_price; ?> &#x631;.&#x633;
                             </span>
                         </div>
                     </a>
@@ -910,11 +935,12 @@ if (mysqli_num_rows($result) > 0) {
                     <a href="" class="pc-title">
                         <p class="product-name"><?php echo $rows['name']?></p>
                     </a>
-                    <p class="product-price" id="product-price-<?php echo $rows['prod_id'] ?>" data-price="4999.00" style="opacity: 1;"><?php echo $rows['price_after']?> &#x631;.&#x633;</p>
+                    <p class="product-price" id="product-price-<?php echo $rows['prod_id'] ?>" data-price="4999.00" style="opacity: 1;"><?php echo $rows['price']?> &#x631;.&#x633;</p>
+                    
                     <p class="product-summary">
                         الإجمالي
                         <span id="itemTotal-<?php echo $rows['prod_id'] ?>">
-                            4999.00 &#x631;.&#x633;
+                        <?php echo $rows['price'] * $rows['quantity'] ;?> &#x631;.&#x633;
                         </span>
                     </p>
                     <p class="clear"></p>
@@ -946,14 +972,18 @@ if (mysqli_num_rows($result) > 0) {
 <script>
     function decrementQuantity(prodId) {
         var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
-            quantity--;
-            document.getElementById("quantity-" + prodId).value = quantity;
-            updateCart(prodId, "decrement");
+            if(quantity > 1){
+
+                quantity--;
+                document.getElementById("quantity-" + prodId).value = quantity;
+                updateCart(prodId, "decrement");
+            }
         
     }
 
     function incrementQuantity(prodId) {
         var quantity = parseInt(document.getElementById("quantity-" + prodId).value);
+        
             quantity++;
             document.getElementById("quantity-" + prodId).value = quantity;
         updateCart(prodId,  "increment");
